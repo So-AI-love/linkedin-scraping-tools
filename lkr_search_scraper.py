@@ -247,20 +247,19 @@ if __name__ == "__main__":
     logging.getLogger("selenium").setLevel(logging.CRITICAL)
     
 
-    from selenium import webdriver
-    from selenium.webdriver.chrome.options import Options
+    import sys
+    sys.path.insert(0,'/usr/lib/chromium-browser/chromedriver')
 
-    # Set up Chrome options
-    chrome_options = Options()
+    from selenium import webdriver
+    import chromedriver_autoinstaller
+
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_argument('--headless') # this is must
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--disable-dev-shm-usage')
+    chromedriver_autoinstaller.install()
 
-    # Specify the path to your ChromeDriver
-    chrome_driver_path = '/usr/bin/chromedriver'
-
-    # Initialize the Chrome driver with the specified options
-    driver = webdriver.Chrome( options=chrome_options ,executable_path=chrome_driver_path)
-
+    driver = webdriver.Chrome(options=chrome_options)
     # Start the webdriver without any logs
     #driver = webdriver.Chrome(options=Options())
     driver.maximize_window()

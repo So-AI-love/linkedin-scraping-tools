@@ -256,10 +256,10 @@ if __name__ == "__main__":
     chrome_options.add_argument('--disable-dev-shm-usage')
 
     # Specify the path to your ChromeDriver
-    #chrome_driver_path = '/path/to/your/chromedriver'
+    chrome_driver_path = '/usr/bin/chromedriver'
 
     # Initialize the Chrome driver with the specified options
-    driver = webdriver.Chrome( options=chrome_options ) #,executable_path=chrome_driver_path)
+    driver = webdriver.Chrome( options=chrome_options ,executable_path=chrome_driver_path)
 
     # Start the webdriver without any logs
     #driver = webdriver.Chrome(options=Options())

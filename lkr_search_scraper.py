@@ -312,4 +312,4 @@ if __name__ == "__main__":
         print(f"Saved the data in ./lkr_data/{file_name}")
 
     print("Done.")
-    driver.close(
+    driver.close()

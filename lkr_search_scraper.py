@@ -259,7 +259,7 @@ if __name__ == "__main__":
     #chrome_driver_path = '/path/to/your/chromedriver'
 
     # Initialize the Chrome driver with the specified options
-    driver = webdriver.Chrome(executable_path=chrome_driver_path, options=chrome_options)
+    driver = webdriver.Chrome( options=chrome_options ) #,executable_path=chrome_driver_path)
 
     # Start the webdriver without any logs
     #driver = webdriver.Chrome(options=Options())

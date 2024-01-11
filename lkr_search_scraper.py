@@ -1,3 +1,4 @@
+
 import argparse
 import os
 import logging
@@ -184,6 +185,7 @@ if __name__ == "__main__":
         type=str,
         help="The url of the search page to scrap",
         required=True,
+        #default = url
     )
     parser.add_argument(
         "--start",
@@ -230,6 +232,8 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # Get the arguments
+    url = "https://www.linkedin.com/talent/search?searchContextId=8fe5d263-7739-471f-89ea-6b0a4d0fd91d&searchHistoryId=5262292356&searchRequestId=ca1839e7-ba16-4ad4-80ed-d13873939073" # @param{type:'string'}
+
     search_url = args.search_url
     start = args.start
     end = args.end
@@ -241,8 +245,24 @@ if __name__ == "__main__":
 
     print("Starting the driver...")
     logging.getLogger("selenium").setLevel(logging.CRITICAL)
+    
+
+    from selenium import webdriver
+    from selenium.webdriver.chrome.options import Options
+
+    # Set up Chrome options
+    chrome_options = Options()
+    chrome_options.add_argument('--no-sandbox')
+    chrome_options.add_argument('--disable-dev-shm-usage')
+
+    # Specify the path to your ChromeDriver
+    #chrome_driver_path = '/path/to/your/chromedriver'
+
+    # Initialize the Chrome driver with the specified options
+    driver = webdriver.Chrome(executable_path=chrome_driver_path, options=chrome_options)
+
     # Start the webdriver without any logs
-    driver = webdriver.Chrome(options=Options())
+    #driver = webdriver.Chrome(options=Options())
     driver.maximize_window()
     driver.get("https://www.linkedin.com/login/")
 
@@ -292,4 +312,4 @@ if __name__ == "__main__":
         print(f"Saved the data in ./lkr_data/{file_name}")
 
     print("Done.")
-    driver.close()
+    driver.close(
